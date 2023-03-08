@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Arrow Functions</title>
+</head>
+<body id="body">
+    <h1>My Boring Website</h1>
+    <p id="paragraph">
+        This website is boring, with very little CSS. 
+        However, we really just care about the javascript. 
+        For example, if you click <button id="button">this button</button>, the background of this paragraph tag will change to blue.
+    </p>
+    <p>We also have a <button id="alert">alert</button> button that will grab the text from the input below and show it in a popup.</p>
+    <div>
+        <input type="text" id="popup-input">
+    </div>
+    <p>
+        We just like random interactivity in the site, including a fun effect if you hover over <span id="hover-this"><b>this.</b></span>
+    </p>
+    <p onmouseover="mouseOverFunction(this)" id="p_tag" onclick="changeColor()">
+        Another task: This should be another feature. 
+        I want to click anywhere in this paragraph tag and I want to be able to change the background color to whatever is in this input: <input id="color_change" type="text"/>.
+    </p>
+    <script>
+        document.getElementById("button").onclick = () =>{
+            setBackgroundColorById("paragraph", "blue");
+        }
+        document.getElementById("alert").onclick = () => {  // annonomous funtion *has no name*
+            alert(document.getElementById("popup-input").value);
+        }
+        document.getElementById("hover-this").onmouseover = () =>{
+            setBackgroundColorById("body", "red");
+        }
+        document.getElementById("hover-this").onmouseout = ()=>{
+            setBackgroundColorById("body", "white");
+        }
+        const getValueFromId = (id) => {
+            return document.getElementById(id).value; // this is the text input value 
+        }
+        const setBackgroundColorById = (id, color) =>{
+            document.getElementById(id).style = "background-color: " + color;
+            // document.addEventListener()
+            return
+        }
+        const mouseOverFunction = (el) =>{
+            return el.style = "background-color: black";
+        }
+        // =========CONNECT EVENT LISTENER TO PARAGRAPH IN HTML (onclick event)=========
+        // need to create id's in the p tag and the input inside of html
+        // create another function to change actual color of background of text 
+        // add onclick event into p tag and inside insert the created function name
+        const changeColor = () => {
+            let colorChange = getValueFromId("color_change")
+            setBackgroundColorById("p_tag", colorChange)
+        }
+    </script>
+</body>
+</html>
+
